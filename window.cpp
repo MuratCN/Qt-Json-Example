@@ -1,4 +1,4 @@
-
+﻿
 
 #include "window.h"
 #include "ui_window.h"
@@ -12,6 +12,7 @@ Window::Window(Game &game, QWidget *parent) :
 	if(mGame.isGameReady()) {
 		createEnemyView(ui->enemyTab);
 		createLevelView(ui->levelTab);
+		createPlayerView(ui->playerTab);
 	}
 
 
@@ -88,4 +89,51 @@ void Window::createLevelView(QWidget *parent)
 	parent->setLayout(levelList);
 //	parent->setFixedHeight(mGame.levels().size()*120);
 //	this->setFixedHeight(mGame.levels().size()*120+50);
+}
+
+void Window::createPlayerView(QWidget *parent)
+{
+	playerList = new QVBoxLayout(parent);
+	Character player = mGame.player();
+	QGroupBox *playerBox = new QGroupBox("Player",parent);
+	QGridLayout *playerBoxLayout = new QGridLayout(playerBox);
+
+	QLabel *characterName = new QLabel(QString("Name:"));
+	QLabel *characterLevel = new QLabel(QString("Level:"));
+	QLabel *characterClassType = new QLabel(QString("Type:"));
+
+	QLineEdit *characterNameEdit = new QLineEdit(player.name());
+	QLineEdit *characterLevelEdit = new QLineEdit(QString::number(player.level()));
+	QLineEdit *characterClassTypeEdit = new QLineEdit(QString::number(player.classType()));
+
+	characterNameEdit->setStyleSheet(QString("background:transparent; border:0"));
+	characterLevelEdit->setStyleSheet(QString("background:transparent; border:0"));
+	characterClassTypeEdit->setStyleSheet(QString("background:transparent; border:0"));
+
+	QObject::connect(characterNameEdit,SIGNAL(editingFinished()),this,SLOT(lineEdit_clicked()));
+	QObject::connect(characterLevelEdit,SIGNAL(editingFinished()),this,SLOT(lineEdit_clicked()));
+	QObject::connect(characterClassTypeEdit,SIGNAL(editingFinished()),this,SLOT(lineEdit_clicked()));
+
+//	characterName->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+//	characterLevel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+//	characterClassType->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+
+	playerBoxLayout->addWidget(characterName,0,0);
+	playerBoxLayout->addWidget(characterNameEdit,0,1);
+	playerBoxLayout->addWidget(characterLevel,1,0);
+	playerBoxLayout->addWidget(characterLevelEdit,1,1);
+	playerBoxLayout->addWidget(characterClassType,2,0);
+	playerBoxLayout->addWidget(characterClassTypeEdit,2,1);
+
+	playerList->addWidget(playerBox);
+	playerBox->setLayout(playerBoxLayout);
+	parent->setLayout(playerList);
+}
+
+void Window::lineEdit_clicked()
+{
+	QLineEdit *lineEdit = sender();
+
+	lineEdit->setStyleSheet(QString("background:white;border:1"));
+
 }

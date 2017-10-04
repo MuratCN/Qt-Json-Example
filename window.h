@@ -7,6 +7,8 @@
 #include <QGroupBox>
 #include <QGridLayout>
 #include <QLabel>
+#include <QLineEdit>
+#include <QDebug>
 
 #include "game.h"
 
@@ -28,12 +30,14 @@ public:
 	void createEnemyView(QWidget *parent = 0);
 	void createLevelView(QWidget *parent = 0);
 	void createPlayerView(QWidget *parent = 0);
-
+public slots:
+	void lineEdit_clicked();
 private:
 	Ui::Window *ui;
 	Game mGame;
 	QVBoxLayout *enemyList;
 	QVBoxLayout *levelList;
+	QVBoxLayout *playerList;
 };
 
 #endif // WINDOW_H

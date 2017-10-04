@@ -11,24 +11,24 @@ int main(int argc, char *argv[])
 	QApplication app(argc, argv);
 	//	QCoreApplication app(argc, argv);
 
-	Game game;
-	game.newGame();
-	// Game is played; changes are made...
-	if (!game.saveGame(Game::Json))
-		return 1;
+//	Game game;
+//	game.newGame();
+//	// Game is played; changes are made...
+//	if (!game.saveGame(Game::Json))
+//		return 1;
 
-	if (!game.saveGame(Game::Binary))
-		return 1;
+//	if (!game.saveGame(Game::Binary))
+//		return 1;
 
 	Game fromJsonGame;
 	if (!fromJsonGame.loadGame(Game::Json))
 		return 1;
 
-	Game fromBinaryGame;
-	if (!fromBinaryGame.loadGame(Game::Binary))
-		return 1;
+//	Game fromBinaryGame;
+//	if (!fromBinaryGame.loadGame(Game::Binary))
+//		return 1;
 
-	Window window(fromBinaryGame);
+	Window window(fromJsonGame);
 	//	window.setGame(game);
 	window.show();
 
