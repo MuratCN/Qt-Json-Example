@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Window</class>
+ <widget class="QTabWidget" name="Window">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>320</width>
+    <height>240</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TabWidget</string>
+  </property>
+  <property name="currentIndex">
+   <number>0</number>
+  </property>
+  <widget class="QWidget" name="enemyTab">
+   <attribute name="title">
+    <string>Enemies</string>
+   </attribute>
+  </widget>
+  <widget class="QWidget" name="levelTab">
+   <attribute name="title">
+    <string>Levels</string>
+   </attribute>
+  </widget>
+  <widget class="QWidget" name="playerTab">
+   <attribute name="title">
+    <string>Player</string>
+   </attribute>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
